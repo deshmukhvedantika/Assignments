@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: 'Times New Roman', Times, serif;
+            background-color: pink;
+        }
+        p{
+            font-size: 18px;
+            color: rgb(233, 172, 80);
+        }
+        h1{
+            text-align: center;
+            color: blueviolet;
+        }
+        h3{
+            color: crimson;
+        }
+        h4{
+            color: green;
+        }
+        i,pre{
+            color: deeppink;
+            font-size: 18px;
+        }
+        ul{
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wrapper Class</h1>
+    <p>A Wrapper class in Java converts a primitive data type into an object.<br>
+        Java is an object-oriented language, Java collections and other frameworks work only with objects, so wrapper classes help us use primitive values as objects.
+    </p>
+    <h3>Why do we need Wrapper Classes?</h3>
+    <ul>
+        <li>Collections (ArrayList, HashMap) cannot store primitive data, only objects.</li>
+        <li>Provides many useful methods (parsing, comparing).</li>
+        <li>Needed for serialization.</li>
+        <li>Supports autoboxing/unboxing.</li>
+        <li>Helps in method parameter passing when objects are required.</li>
+    </ul>
+    <h3>List of Primitive vs Wrapper Classes</h3>
+    <table border="1"cellspacing="10" cellpadding="5">
+        <tr>
+            <th>Primitive</th>
+            <th>Wrapper Class</th>
+        </tr>
+        <tr>
+            <td>byte</td>
+            <td>Byte</td>
+        </tr>
+        <tr>
+            <td>short</td>
+            <td>Short</td>
+        </tr>
+        <tr>
+            <td>int</td>
+            <td>Integer</td>
+        </tr>
+        <tr>
+            <td>long</td>
+            <td>Long</td>
+        </tr>
+        <tr>
+            <td>float</td>
+            <td>Float</td>
+        </tr>
+        <tr>
+            <td>double</td>
+            <td>Double</td>
+        </tr>
+        <tr>
+            <td>char</td>
+            <td>Character</td>
+        </tr>
+        <tr>
+            <td>boolean</td>
+            <td>Boolean</td>
+        </tr>
+    </table>
+    <h3>Creating Wrapper Objects</h3>
+    <h4>Using constructors (old method, not recommended now):</h4>
+    <i>Integer obj = new Integer(10);</i>
+    <h4>Using valueOf() (recommended):</h4>
+    <i>Integer obj = Integer.valueOf(10);</i>
+    <h3>AutoBoxing (Primitive → Object Automatically)</h3>
+    <p>automatic conversion of a primitive data type into its wrapper object.</p>
+    <b>Example:</b>
+    <e><pre>int a = 10;
+Integer obj = a;   // AutoBoxing
+</pre></e>
+<p>No need to manually create an object.</p>
+<b>Real use:</b>
+<e><pre>ArrayList<.Integer.> list = new ArrayList<>();
+list.add(10);  // AutoBoxing: int → Integer
+</pre></e>
+<h3>Unboxing (Object → Primitive Automatically)</h3>
+<p>Conversion from wrapper object back to primitive type.</p>
+<b>Example:</b>
+<e><pre>Integer obj = 100;
+int x = obj;   // Unboxing
+</pre></e>
+<p>Earlier this would require:</p>
+<i>int x = obj.intValue();</i>
+<h3>Wrapper Class Utility Methods</h3>
+ <p>Examples using Integer:</p>   
+ <b>parseXxx()</b>
+ <p>Convert string into primitive.</p>
+ <i>int n = Integer.parseInt("123");</i><br><hr><br>
+ <b>valueOf()</b>
+ <p>Convert primitive or string to wrapper object.</p>
+ <i>Integer i = Integer.valueOf("50");</i><br><hr><br>
+ <b>toString()</b>
+ <p>Convert number to string.</p>
+ <i>String s = Integer.toString(200);</i>
+ <h3>Wrapper Class Example Program</h3>
+ <i><pre>class WrapperExample {
+public static void main(String[] args) {
+int a = 10;
+    // AutoBoxing
+    Integer obj = a;
+
+    // Unboxing
+    int b = obj;
+
+    System.out.println("Primitive value: " + a);
+    System.out.println("Wrapper value: " + obj);
+    System.out.println("Unboxed value: " + b);
+}
+}
+</pre></i>
+<b>Output:</b>
+<pre>Primitive value: 10
+Wrapper value: 10
+Unboxed value: 10
+</pre>
+<h3>Example: Using Wrapper with Collections</h3>
+<p>ArrayList cannot store primitives directly.</p>
+<i><pre>import java.util.*;
+class WrapperWithCollection {
+public static void main(String[] args) {
+ArrayList list = new ArrayList<>();
+    list.add(10);   // AutoBoxing
+    list.add(20);
+    list.add(30);
+
+    for(Integer n : list) {
+        System.out.println(n);
+    }
+}
+}
+</pre></i>
+<b>Output:</b>
+<pre>10
+20
+30
+</pre>
+<h3>Real-Life Example Using Wrapper Classes</h3>
+<i><pre>import java.util.ArrayList;
+
+public class WrapperExample {
+    public static void main(String[] args) {
+        ArrayList<.Integer.> list = new ArrayList<>(); 
+
+        list.add(10);  // autoboxing: int → Integer
+        list.add(20);
+
+        int value = list.get(0);  // unboxing: Integer → int
+
+        System.out.println("Value: " + value);
+    }
+}
+</pre></i>
+<b>Output:</b>
+<pre>Value: 10</pre>
+<h3>Memory Diagram</h3>
+<b>Primitive:</b><br>
+<i><pre>int a = 10
+Stored directly in stack
+</pre></i><br>
+<b>Wrapper object:</b>
+<i><pre>Integer obj = 10
+
+Stack:
+obj → reference
+Heap:
+Object storing value 10
+</pre></i>
+<table border="1"cellspacing="10"cellpadding="5">
+    <tr>
+        <th>Features</th>
+        <th>Primitive</th>
+        <th>Wrapper</th>
+    </tr>
+    <tr>
+        <td>Data type</td>
+        <td>Basic</td>
+        <td>Object</td>
+    </tr>
+    <tr>
+        <td>Memory</td>
+        <td>Stack</td>
+        <td>Heap</td>
+    </tr>
+    <tr>
+        <td>Null possible?</td>
+        <td>No</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>Used in Collection</td>
+        <td>No</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>Example</td>
+        <td>int a = 10</td>
+        <td>Integer obj = 10</td>
+    </tr>
+</table>
+<h3>When Should You Use Wrapper Classes.</h3>
+<ul>
+    <li>When using Collections</li>
+    <li>When you need to store null values</li>
+    <li>When using class methods (parse, valueOf, compare)</li>
+    <li>When working with generics</li>
+</ul>
+<h3>Some extra Points</h3>
+<h4>1.	All wrapper Classes are Immutable (cannot be changed after creation).</h4>
+<i><pre>Integer a = 10;
+a = 20; 			// new object created.
+</pre></i>
+<h4>2.	Wrapper Classes are Final (Inheritance Not Allowed)	-not extend them.</h4>
+<h4>3.	Wrapper Classes are stored in HEAP memory.</h4>
+<pre>Primitive values store in <u>stack</u>,
+Wrapper objects store in <u>heap</u>.
+</pre>
+<h4>4.	Wrapper Class Provides CONSTANTS	-  Useful predefined value</h4>
+<pre>Integer.MIN_VALUE	-minimum value of int
+Integer.MAX_VALUE	-mazmim value if int
+Character.SIZE		-char size in bits
+</pre>
+<h4>5.	Utility Methods</h4>
+<b><pre> parseInt() – convert String → int
+ valueOf() – convert String → wrapper object
+ toString() – convert object → String
+ compare() – compare values
+ isDigit() – check digit
+</pre></b>
+<h4> 6. Wrapper Object can be NULL</h4>
+<pre>Primitive types (int, boolean) cannot store null.
+But wrapper classes can store null.
+</pre>
+<b>Example:</b>
+<i><pre>   Integer a = null; // valid
+       int b = null;     // error
+</pre></i>
+<h4>7. Wrapper Classes are used in GENERICS</h4>
+<p>(One of the biggest reasons)</p>
+<i><pre>ArrayList<.int.>		 // not valid
+ArrayList<.Integer.>	//must
+</pre></i>
+<h4>8. Wrapper Classes Support Type Conversion</h4>
+<b>Example:</b>
+<i><pre>Integer a = Integer.valueOf("100");
+int b = a.intValue();
+double c = a.doubleValue();
+</pre></i>
+<u>Wrapper classes provide many methods to convert primitive value.</u>
+<h4>9.Wrapper Classes Help in BOXING & UNBOXING</h4>
+<ul>
+    <li>Boxing = primitive → object</li>
+    <li>Unboxing = object → primitive</li>
+</ul>
+<h4>10. Wrapper Classes are Part of java.lang Package</h4>
+<p>No need to import wrapper classes because they already available in java.lang package.</p>
+<h4>11. Wrapper Classes inside Collection Framework</h4>
+<i><pre>ArrayList<.Integer.> list = new ArrayList<>();
+list.add(10); // autoboxing
+</pre></i>
+<p>Work with Collections wrapper class is compulsory.</p>
+<h4>12. Wrapper Classes Used for Serialization</h4>
+<p>Primitive not serialize but wrapper objects serializable</p>
+</body>
+</html>
