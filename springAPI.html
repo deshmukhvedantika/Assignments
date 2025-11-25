@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>1.	REST API</h1>
+    <p>-API = Application Programming Interface<br>
+-A REST API is a way for different applications to talk to each other over the internet using  standard rules.<br>
+-Means technique that exchange data with backend server.<br>
+-REST uses standard HTTP methods like GET, POST, PUT, DELETE.
+</p>
+<h1>2.  GET & POST</h1>
+<p>GET- Used to fetch data from the server.<br>
+POST- Used to send data to the server (like inserting a new record).
+</p>
+<h1>3.	JSON</h1>
+<p>A lightweight format to send and receive data. Example format:
+<pre>{
+  "id": 1,
+  "name": "Vedantika"
+}
+</pre>
+  JSON uses key-value pair format<br>
+ Stands for JavaScript Object Notation
+</p>
+<h1>4.	Controller</h1>
+<p>A Controller is a class that handles external HTTP requests. <br>
+Most APIs are written inside controllers.<br>
+Use @RestController <br>
+The controller receives requests from the user (client) and decides what to do next—like calling the service and returning the response.
+<br>
+@RestController<br>
+<pre>public class StudentController {
+
+    @GetMapping("/students")
+    public String getStudents() {
+        return "All Students";
+    }
+}
+
+It maps URLs to methods using annotations like:
+•	@GetMapping
+•	@PostMapping
+•	@PutMapping
+•	@DeleteMapping
+</pre></p>
+<h1>5. CRUD</h1>
+<p>-(Create,read,update,delete)  This are basic 4 operations</p>
+<pre>•  Create → POST
+•  Read → GET
+•  Update → PUT
+•  Delete → DELETE
+</pre>
+<h1>6.	Service</h1>
+<p>Service contains business logic (main processing). Controller sends the request here.<br>
+Controller → Service → Repository<br>
+•  Service never talks directly to the user.<br>
+•  It only talks to the Controller and Repository.<br>
+
+<pre>@Service
+public class StudentService {
+   public List<Student> getAllStudents() {
+       return repo.findAll();
+   }
+}
+</pre>
+</p>
+<h1>7.	Repository</h1>
+<p>Manage db op like save update,delete and find.<br>
+           Repository is part of Data Access Layer (DAO).<br>
+           Use JpaRepository<br>
+          <pre> @Repository
+public interface StudentRepo extends JpaRepository<Student, Integer> { }
+</pre></p>
+<h1>8.	Entity / Model   </h1>
+<p>This is a class that represents a database table (fields = columns).<br>
+    Class which have variables <br>
+Every Entity must have @Id<br>
+@Entity makes the class ready for ORM (Hibernate).<br>
+
+<pre> @Entity
+public class Student {
+@Id
+  private int id;
+  private String name;
+}
+</pre>
+</p>
+<h1>9.	PathVariable</h1>
+<p>Used to pass values inside the URL.<br>
+-GET /student/5<br>
+  Works with URL parameters.<br>
+  Extracts value from URL.<br>
+
+Controller:
+<pre>@GetMapping("/student/{id}")
+public Student getStudent(@PathVariable int id) {
+    return service.getStudent(id);
+}
+</pre>
+</p>
+<h1>10.	RequestBody</h1>
+<p>- Used to get JSON format data from the client <br>
+Used only in POST / PUT requests usually.<br>
+
+<pre>@PostMapping("/students")
+public Student addStudent(@RequestBody Student s) {
+return service.addStudent(s);
+}
+</pre>
+</p>
+<h1>11.	Postman Testing </h1>
+<p>Postman is a software tool used to test APIs without creating a frontend.</p>
+<h1>12.	@GetMapping</h1>
+<p>- use to handled GET request.
+<pre>@GetMapping("/students")</pre>
+</p>
+<h1>13.	@PostMapping </h1>
+<p>use to handled POST request.
+<pre>@PostMapping("/students")
+</pre>
+</p>
+<h1>14.	Flow</h1>
+<pre>•  Client sends request (GET/POST/PUT/DELETE)
+•  Controller receives it
+•  Controller calls Service
+•  Service calls Repository
+•  Repository interacts with Database
+•  Response returns back to client
+</pre>
+<table border="1"></table>
+<tr>
+  <td>Step</td>
+  <td>What happened </td>
+</tr>
+<tr>
+  <td>POST /student</td>
+  <td>Send data</td>
+</tr>
+<tr>
+  <td>Controller</td>
+  <td>Accept request </td>
+</tr>
+<tr>
+  <td>Service</td>
+  <td>Processing according to rules</td>
+</tr>
+<tr>
+  <td>Repository</td>
+  <td>Save in db</td>
+</tr>
+<tr>
+  <td>Response</td>
+  <td>Then “Student Saved Successfully”</td>
+</tr>
+<h1>15.	Dependency Injection (DI)</h1>
+<p>In Spring Boot, we never manually create objects using new.<br>
+Spring creates them automatically using:<br>
+<pre>•	@Autowired
+•	@Service
+•	@Repository
+•	@Component
+</pre>
+Example:
+<pre>@Autowired
+StudentService service;
+</pre>
+This is important in real projects.
+</p>
+</body>
+</html>
