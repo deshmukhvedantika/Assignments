@@ -1,0 +1,13 @@
+package com.vvd.studentAddmission;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class StudentAddmissionApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
