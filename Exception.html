@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(189, 202, 202);
+            font-size: 18px;
+        }
+        h3{
+            color:blueviolet
+        }
+        i{
+            font-size: 18px;
+            color: green;
+        }
+        ul,p{
+            font-size: 20px;
+            color: brown;
+        }
+        th{
+            color: deeppink;
+            font-size: 20px;
+        }
+        td{
+            color: rgb(219, 28, 184);
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Exception</h2>
+    <h3>1.	An exception is an event that occurs during the execution of a program that disrupts the normal flow of instructions.(Program running).</h3>
+    <b>Example:</b><br>
+    <i><pre>int a = 5;
+int b = 0;
+int c = a / b; // This will cause an exception
+<b>In this example, dividing by zero will throw an exception.</b>
+</pre></i>
+<h3>2.	Types of Exceptions</h3>
+<table border="1"cellspacing="px" cellpadding="5px">
+    <tr>
+        <th>Checked Exceptions (Compile Time Exceptions)</th>
+        <th>Unchecked Exceptions (Runtime Exceptions)</th>
+    </tr>
+    <tr>
+        <td>checked by the compiler at compile-time. And handle them using try-catch or throws.</td>
+        <td>These exceptions occur during program execution. Compiler does not check them at compile-time. 
+Optional to handle, runtime check.
+</td>
+    </tr>
+    <tr>
+        <td><i><pre>import java.io.*;
+
+public class CheckedExample {
+    public static void main(String[] args) {
+        try {
+            FileReader file = new FileReader("test.txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+        }
+    }
+}
+</pre></i></td>
+        <td><i><pre>public class UncheckedExample {
+    public static void main(String[] args) {
+        int a = 5;
+        int b = 0;
+        int c = a / b; // ArithmeticException
+    }
+}
+</pre></i></td>
+    </tr>
+    <tr>
+        <td>Examples: FileNotFoundException, ClassNotFoundException, IOException</td>
+        <td>Examples:  ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException, NumberFormatException</td>
+    </tr>
+</table>
+<h3>3.	Common Exceptions in Java</h3>
+<table border="2"cellpadding="5px" cellspacing="10px">
+<tr>
+    <th>Exception</th>
+    <th>Explanation</th>
+    <th>Example</th>
+</tr>
+<tr>
+    <td>ArithmeticException</td>
+    <td>Occurs when an illegal arithmetic operation happens, e.g., divide by zero</td>
+    <td>int a = 10/0;</td>
+</tr>
+<tr>
+    <td>ArrayIndexOutOfBoundsException</td>
+    <td>When accessing array with invalid index</td>
+    <td>int arr[] = {1,2}; int x = arr[5];</td>
+</tr>
+<tr>
+    <td>NullPointerException</td>
+    <td>When trying to use an object reference that is null</td>
+    <td>String s = null; s.length();</td>
+</tr>
+<tr>
+    <td>NumberFormatException</td>
+    <td>When converting string to number fails</td>
+    <td>int num = Integer.parseInt("abc");</td>
+</tr>
+<tr>
+    <td>FileNotFoundException</td>
+    <td>When trying to access a non-existent file</td>
+    <td>FileReader file = new FileReader("test.txt");</td>
+</tr>
+<tr>
+    <td>IOException</td>
+    <td>Input/Output operation fails</td>
+    <td>BufferedReader br = new BufferedReader(new FileReader("test.txt")); br.readLine();</td>
+</tr>
+<tr>
+    <td>ClassNotFoundException</td>
+    <td>When class not found during runtime</td>
+    <td>Class.forName("MyClass");</td>
+</tr>
+<tr>
+    <td>IllegalArgumentException</td>
+    <td>Method receives illegal or inappropriate argument</td>
+    <td>Thread.sleep(-1000);</td>
+</tr>
+<tr>
+    <td>IllegalStateException</td>
+    <td>Object is not in proper state for operation</td>
+    <td>Iterator it = list.iterator(); it.remove();</td>
+</tr>
+<tr>
+    <td>ArrayStoreException</td>
+    <td>Storing wrong type in array</td>
+    <td>Object[] arr = new String[2]; arr[0] = 10;</td>
+</tr>
+<tr>
+    <td>InputMismatchException</td>
+    <td>Scanner input type mismatch</td>
+    <td>Scanner sc = new Scanner(System.in); int x = sc.nextInt();</td>
+</tr>
+<tr>
+    <td>StackOverflowError</td>
+    <td>Recursive method exceeds stack memory</td>
+    <td>void fun(){ fun(); }</td>
+</tr>
+<tr>
+    <td>OutOfMemoryError</td>
+    <td>JVM memory exceed</td>
+    <td>int arr[] = new int[1000000000];</td>
+</tr>
+</table>
+<h3>4.	Exception Handling		there are 5 keywords in java to handle an Exception.</h3>
+<dl>
+    <dt>try:</dt>
+    <dd>Block of code where exception can occur.</dd>
+    <dt>catch:</dt>
+    <dd>Block of code to handle the exception.</dd>
+    <dt>finally</dt>
+    <dd><pre>Block that will execute always.
+finally block is useful for closing resources like files, DB connections
+</pre></dd>
+    <dt>throw</dt>
+    <dd>Throws single exception</dd>
+    <dt>throws</dt>
+    <dd>Declare exception for method or To declare exceptions in method signature</dd>
+</dl>
+<h3>5.	 Example of try-catch-finally</h3>
+<i><pre>public class ExceptionExample {
+    public static void main(String[] args) {
+        try {
+            int data = 10 / 0; // ArithmeticException
+        } catch (ArithmeticException e) {
+            System.out.println("Cannot divide by zero!");
+        } finally {
+            System.out.println("This block always executes");
+        }
+    }
+}
+<b>Output:</b>
+Cannot divide by zero!
+This block always executes
+</pre></i>
+<h3>Example: throw/throws</h3>
+<i><pre>// throw
+void checkAge(int age) {
+    if(age < 18) {
+        throw new ArithmeticException("Not allowed");
+    }
+}
+
+// throws
+void readFile() throws IOException {
+    FileReader file = new FileReader("test.txt");
+}
+</pre></i>
+<h3>6.	Why Use Exception Handling?</h3>
+<i><pre>import java.util.*;
+import java.io.*;
+
+public class ExceptionDemo {
+    public static void main(String[] args) {
+        try {
+            int a = 10 / 0; // ArithmeticException
+            int arr[] = {1,2};
+            System.out.println(arr[5]); // ArrayIndexOutOfBoundsException
+            String s = null;
+            System.out.println(s.length()); // NullPointerException
+        } catch (ArithmeticException e) {
+            System.out.println("Cannot divide by zero");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array index is invalid");
+        } catch (NullPointerException e) {
+            System.out.println("Object is null");
+        } finally {
+            System.out.println("Program completed");
+        }
+    }
+}
+<b>Output:</b>
+Cannot divide by zero
+Program completed
+</pre></i>
+<h3>7.	Throwable:	Base class for all errors and exceptions.(Root class).</h3>
+<h3>8.	Error (Errors): Serious problems that a program usually cannot handle.</h3>
+<table border="1" cellspacing="5px" cellpadding="10">
+    <tr>
+        <th>Error</th>
+        <th>Explanation</th>
+    </tr>
+    <tr>
+        <td>OutOfMemoryError</td>
+        <td>JVM memory full</td>
+    </tr>
+    <tr>
+        <td>StackOverflowError</td>
+        <td>Recursive calls exceed stack</td>
+    </tr>
+    <tr>
+        <td>VirtualMachineError</td>
+        <td>JVM related errors(internal problem)</td>
+    </tr>
+</table>
+<h3>9.	Custom Exceptions (User-defined Exceptions)</h3>
+<p>Create your own exception class when built-in Java exceptions are not enough.</p>
+<h3>Example: Checked Custom Exception</h3>
+<i><pre>class MyException extends Exception {
+    MyException(String message) {
+        super(message);
+    }
+}
+
+public class TestCustom {
+    static void checkAge(int age) throws MyException {
+        if(age < 18) throw new MyException("Age must be 18+");
+    }
+
+    public static void main(String[] args) {
+        try {
+            checkAge(15);
+        } catch(MyException e) {
+            System.out.println("Caught: " + e.getMessage());
+        }
+    }
+}
+<b>If age <18 then throw custom exception
+try-catch handled in Main method</b>
+</pre></i>
+<h3>10.	Multi-catch Block (Java 7+)</h3>
+<p> Catch multiple exceptions in a single catch block.</p>
+<i><pre>try {
+    int a = 10 / 0;        // ArithmeticException
+    int arr[] = {1,2};
+    System.out.println(arr[5]);  // ArrayIndexOutOfBoundsException
+} catch(ArithmeticException | ArrayIndexOutOfBoundsException e) {
+    System.out.println("Caught exception: " + e);
+}
+
+<b>Two exception handled in 1 block.</b>
+</pre></i>
+<h3>11.	try-with-resources (Java 7+)</h3>
+<p>Automatically close resources like files, DB connections.</p>
+<i><pre>import java.io.*;
+
+public class TryResourceDemo {
+    public static void main(String[] args) {
+        try(BufferedReader br = new BufferedReader(new FileReader("test.txt"))) {
+            String line = br.readLine();
+            System.out.println(line);
+        } catch(IOException e) {
+            System.out.println("IOException: " + e.getMessage());
+        }
+    }
+}
+<b>br resource close automatic after try block .</b>
+</pre></i>
+<h3>12.	Exception Propagation / Call Stack</h3>
+<p>Exception moves from the method where it occurs to calling methods until handled.</p>
+<i><pre>class PropDemo {
+    static void method1() throws Exception {
+        throw new Exception("Exception in method1");
+    }
+
+    static void method2() throws Exception {
+        method1(); // exception propagates
+    }
+
+    public static void main(String[] args) {
+        try {
+            method2();
+        } catch(Exception e) {
+            System.out.println("Caught: " + e.getMessage());
+        }
+    }
+}
+
+<b>Method1-> method2-> main() 		-Exception travelled</b>
+</pre></i>
+<h3>13.	Chained Exceptions (initCause())</h3>
+<p>Preserve original exception cause when throwing new exception.</p>
+<i><pre>try {
+    int a = 10 / 0;
+} catch(ArithmeticException e) {
+    RuntimeException re = new RuntimeException("Runtime caused by arithmetic");
+    re.initCause(e); // original exception saved
+    throw re;
+}
+
+<b>ArithmeticException is main reason so is attached in RuntimeException.</b>
+</pre></i>
+<h3>14.	Suppressed Exceptions</h3>
+<p>Mostly occurs in try-with-resources. If multiple exceptions happen, suppressed exceptions store secondary exceptions.</p>
+<h3>15.	Nested try-catch Blocks</h3>
+<p>One try-catch inside another try-catch.</p>
+<i><pre>try {
+    try {
+        int a = 10 / 0;
+    } catch(ArithmeticException e) {
+        System.out.println("Inner catch");
+    }
+} catch(Exception e) {
+    System.out.println("Outer catch");
+}
+
+<b>Inner catch box handled inner Exception ,otherwise catch.</b>
+</pre></i>
+<h4>Note:</h4>
+<u><b><pre>Catch specific exceptions before general Exception.
+Don’t catch Throwable or Error unless necessary.
+</pre></b></u>
+<h3>Some additional points:</h3>
+<ul>
+    <li>Checked exceptions are checked at compile-time, and must be handled using try-catch or declared using throws, otherwise the program will not compile.</li>
+    <li>Unchecked exceptions are subclasses of RuntimeException.</li>
+    <li>Suppressed exceptions occur when multiple exceptions are thrown but only the main one is reported while secondary ones are stored as suppressed, usually in try-with-resources.</li>
+    <li>Catch specific exceptions first and general exceptions later, otherwise specific exceptions may become unreachable.</li>
+</ul>
+</body>
+</html>
