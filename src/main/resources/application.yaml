@@ -1,9 +1,16 @@
 spring:
   application:
+<<<<<<< HEAD
     name: StudentInfoDb
 
   datasource:
     url: jdbc:mysql://localhost:3306/StudentSystem
+=======
+    name: studentAdmission
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/studentdb
+>>>>>>> 59ae5bb70da4f192d2ac59318863a94ce7ee50c1
     username: root
     password: sangita@2845
 
