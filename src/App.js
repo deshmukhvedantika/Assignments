@@ -1,13 +1,9 @@
-import Header from "./Components/Header";
-import './App.css';
-
-function App() {
-  return (
-    <div>
-      <Header/>
-      <h1>Hello React</h1>
-    </div>
+import Counter from "./Components/Counter";
+function App(){
+  return(
+  <div>
+  <Counter/>
+  </div>
   );
 }
-
 export default App;
